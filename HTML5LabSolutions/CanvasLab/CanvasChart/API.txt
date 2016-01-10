@@ -1,0 +1,15 @@
+canvas.getContext
+
+fillStyle
+strokeStyle
+lineWidth
+
+fill()
+arc(150,150,100,0,2 * Math.PI, true)
+fillRect()
+stroke()
+
+beginPath()
+moveTo()
+lineTo()
+closePath()

@@ -1,0 +1,17 @@
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\bin\WebSockets.dll
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\bin\WebSockets.pdb
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\bin\Microsoft.WebSockets.dll
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\obj\Debug\WebSockets.dll
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\obj\Debug\WebSockets.pdb
+\\Wahlind-i7\d\Wahlin Group\Courses\PluralSight\ASP.NET 4.5\Module3\Code\After\UsingWebSockets\WebSockets\bin\WebSockets.dll
+\\Wahlind-i7\d\Wahlin Group\Courses\PluralSight\ASP.NET 4.5\Module3\Code\After\UsingWebSockets\WebSockets\bin\WebSockets.pdb
+\\Wahlind-i7\d\Wahlin Group\Courses\PluralSight\ASP.NET 4.5\Module3\Code\After\UsingWebSockets\WebSockets\bin\Microsoft.WebSockets.dll
+\\Wahlind-i7\d\Wahlin Group\Courses\PluralSight\ASP.NET 4.5\Module3\Code\After\UsingWebSockets\WebSockets\obj\Debug\UsingWebSockets.csprojResolveAssemblyReference.cache
+\\Wahlind-i7\d\Wahlin Group\Courses\PluralSight\ASP.NET 4.5\Module3\Code\After\UsingWebSockets\WebSockets\obj\Debug\WebSockets.dll
+\\Wahlind-i7\d\Wahlin Group\Courses\PluralSight\ASP.NET 4.5\Module3\Code\After\UsingWebSockets\WebSockets\obj\Debug\WebSockets.pdb
+D:\Wahlin Group\Courses\HTML5\HTML5Samples\WebSockets\ASP.NET\WebSockets\bin\WebSockets.dll
+D:\Wahlin Group\Courses\HTML5\HTML5Samples\WebSockets\ASP.NET\WebSockets\bin\WebSockets.pdb
+D:\Wahlin Group\Courses\HTML5\HTML5Samples\WebSockets\ASP.NET\WebSockets\bin\Microsoft.WebSockets.dll
+D:\Wahlin Group\Courses\HTML5\HTML5Samples\WebSockets\ASP.NET\WebSockets\obj\Debug\UsingWebSockets.csprojResolveAssemblyReference.cache
+D:\Wahlin Group\Courses\HTML5\HTML5Samples\WebSockets\ASP.NET\WebSockets\obj\Debug\WebSockets.dll
+D:\Wahlin Group\Courses\HTML5\HTML5Samples\WebSockets\ASP.NET\WebSockets\obj\Debug\WebSockets.pdb

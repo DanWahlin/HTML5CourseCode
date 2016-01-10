@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+  
+  <head>
+  <title>Canvas Click</title>
+    <script type="text/javascript">
+        // This function is called on page load.
+        function drawOnCanvas() {
+            // Get the canvas element.
+            var canvas = document.getElementById("uIElement");
+
+            // Make sure you got it.
+            if (canvas.getContext)
+            // If you have it, create a canvas user inteface element.
+            {
+                // Specify 2d canvas type.
+                var ctx = canvas.getContext("2d");
+                // Draw gold UI element.
+                // Start the path.
+                ctx.beginPath();
+                // Define the fill color in RGB for gold.
+                ctx.fillStyle = "rgb(255 ,215 ,0)";
+                // Draw the circle using an arc.
+                ctx.arc(100, 100, 50, 0, 2 * Math.PI, true);
+                // Fill the circle.
+                ctx.fill();
+            }
+        }
+
+        // This function is called when you click the canvas.
+        function clickOnUI() {
+            alert("You clicked the canvas UI element.");
+        }
+    </script>
+  </head>
+  
+  <body onload="drawOnCanvas()">
+    <h1>
+      Canvas User Interface
+    </h1>
+    <!-- Create the Canvas element. -->
+    <canvas id="uIElement" width="200" height="200" onclick="clickOnUI()">
+    </canvas>
+    <p>
+      Click on the gold circular user interface element.
+    </p>
+  </body>
+</html>

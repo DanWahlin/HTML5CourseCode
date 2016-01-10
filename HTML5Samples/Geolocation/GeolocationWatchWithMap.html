@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Geolocation Demo</title>
+    <script>
+        var watchID = null;
+        function startWatch() {
+            if (navigator.geolocation) {
+                if (watchID == null) {
+                    watchID = navigator.geolocation.watchPosition(watchPositionCallback, errorCallback, 
+                    {enableHighAccuracy: true, maximumAge: 10000});
+                } 
+            }
+            else {
+                alert('Your browser doesn\'t support geolocation');
+            }
+        }
+        
+        function endWatch() {
+            if (watchID != null) {
+                navigator.geolocation.clearWatch(watchID);
+                watchID = null;
+                if (map.childNodes.length > 0) map.removeChild(map.firstChild);
+            }
+        }
+        
+        function errorCallback(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED: alert("User did not share geolocation info");
+                    break;
+
+                case error.POSITION_UNAVAILABLE: alert("Could not detect current position");
+                    break;
+
+                case error.TIMEOUT: alert("Timed out");
+                    break;
+
+                default: alert(error.message);
+                    break;
+            }  
+        }
+
+        function watchPositionCallback(position) {
+            var coords = position.coords;
+            updatePosition('long', coords.longitude);
+            updatePosition('lat', coords.latitude);
+            updatePosition('altitude', coords.altitude);
+            updatePosition('speed', coords.speed);
+            updatePosition('accuracy', coords.accuracy);
+            updatePosition('time', getTime());
+            var map = document.getElementById('map');
+            if (map.childNodes.length > 0) map.removeChild(map.firstChild);
+            var image_url = "http://maps.google.com/maps/api/staticmap?sensor=false&center=" + 
+                    coords.latitude + "," +
+                    coords.longitude + "&zoom=14&size=500x300&markers=color:blue|label:S|" +
+                    coords.latitude + ',' +
+                    coords.longitude;
+            var img = document.createElement('img');
+            img.setAttribute('src', image_url);
+            map.appendChild(img);
+        }
+
+        function getTime() {
+            var dTime = new Date();
+            var hours = dTime.getHours();
+            var minute = dTime.getMinutes();
+            var period;
+            if (hours > 12) period = "PM";
+            else period = "AM";
+            hours = ((hours > 12) ? hours - 12 : hours);
+            return hours + ":" + minute + " " + period;
+        }
+
+        function updatePosition(id, val) {
+            document.getElementById(id).innerHTML = val;
+        }
+    </script>
+
+</head>
+<body>
+    Longitude: <span id="long"></span>
+    <br />
+    Latitude: <span id="lat"></span>
+    <br />
+    Altitude: <span id="altitude"></span>
+    <br />
+    Speed <span id="speed"></span>
+    <br />
+    Accuracy (in meters): <span id="accuracy"></span>
+    <br />
+    Last update: <span id="time"></span>
+    <br /><br />
+    <input type="button" value="Watch Location" onclick="startWatch()"/>&nbsp;&nbsp;
+    <input type="button" value="Stop Watching Location" onclick="endWatch()"/>
+    <br /><br />
+    <div id="map"></div>
+</body>
+</html>
+

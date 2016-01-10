@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html >
+<html>
+<head>
+    <title>Using Local Storage</title>
+    <script>	
+        var tb;
+        var sel;
+
+        window.onload = function() {
+	        tb = document.getElementById('CityTextBox');
+	        sel = document.getElementById('ColorsSelect');
+	        loadSettings();
+        };
+
+        function submitClick() {
+	        if (hasLocalStorage) {
+                try {
+	                localStorage.setItem('city', tb.value);
+	                localStorage.setItem('color', sel.value);
+	                document.getElementById('OutputSpan').innerHTML = 'Preferences Saved!';
+                } catch (e) {
+	                if (e == QUOTA_EXCEEDED_ERR) {
+		                alert('Storage quota exceeded');
+	                }
+                }
+	        }
+	        else {
+		        alert('No local storage support');
+	        }
+        }
+		
+		function clearClick() {
+			sel.selectedIndex = 0;
+			if (hasLocalStorage()) {
+				localStorage.clear();
+				loadSettings();
+			}
+		}
+
+
+        function loadSettings() {
+            if (hasLocalStorage()) {
+                var city = localStorage.getItem('city');
+                var color = localStorage.getItem('color');
+                tb.value = city;
+                sel.value = color;
+            }
+        }
+        
+        function hasLocalStorage() {
+            return ('localStorage' in window && window['localStorage'] != null);
+        }
+    </script>
+</head>
+<body>
+    <h2>Preferences</h2>
+    <br />
+    Favorite City: <input type="text" id="CityTextBox"/>
+    <br />
+    Favorite Color: 
+    <select id="ColorsSelect">
+        <option>Select One:</option>
+        <option>Blue</option>
+        <option>Red</option>
+        <option>Green</option>
+    </select>
+    <br />
+    <button id="SubmitButton" onClick="submitClick()">Save Preferences</button>&nbsp;&nbsp;
+    <button id="ClearButton" onClick="clearClick()">Clear Preferences</button>
+    <br />
+    <span id="OutputSpan"></span>
+</body>
+</html>

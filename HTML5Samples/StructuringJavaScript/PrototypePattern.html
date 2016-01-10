@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Using Functions</title>
+    <link href="Styles/Styles.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/PrototypePattern.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var calc = null;
+        window.onload = function () {
+            calc = new Calculator('currNumber', 'eq');
+        };
+    </script>
+</head>
+<body>
+    <div>
+        <h2>Using the Prototype Pattern to create a calculator</h2>
+        <!-- Note: I prefer to wire up event handlers via code in "real life" apps
+            but in this case I decided to do it in HTML just to allow the focus to stay
+            on patterns. -->
+        <div class="Calculator">
+            <div class="CalculatorHead">
+                <div id="eq" class="Equation"></div>
+                <div id="currNumber" class="CurrentNumber">0</div>
+            </div>
+            <div>
+                <div class="Button" onclick="calc.numberClick(event);">7</div>
+                <div class="Button" onclick="calc.numberClick(event);">8</div>
+                <div class="Button" onclick="calc.numberClick(event);">9</div>   
+                <div class="Button" onclick="calc.setOperator('/');">/</div>        
+                <div class="Button rowspan2" onclick="calc.clearNumbers();">C</div>
+            </div>
+            <div>
+                <div class="Button" onclick="calc.numberClick(event);">4</div>
+                <div class="Button" onclick="calc.numberClick(event);">5</div>
+                <div class="Button" onclick="calc.numberClick(event);">6</div> 
+                <div class="Button" onclick="calc.setOperator('*');">*</div>           
+            </div>
+            <div>
+                <div class="Button" onclick="calc.numberClick(event);">1</div>
+                <div class="Button" onclick="calc.numberClick(event);">2</div>
+                <div class="Button" onclick="calc.numberClick(event);">3</div>
+                <div class="Button" onclick="calc.setOperator('-')">-</div>            
+                <div class="Button rowspan2" onclick="calc.setOperator('=');">=</div>
+            </div>
+            <div>
+                <div class="Button colspan2" onclick="calc.numberClick(event);">0</div>
+                <div class="Button" onclick="calc.numberClick();">.</div>
+                <div class="Button" onclick="calc.setOperator('+');">+</div>            
+            </div>
+        </div>
+    </div>
+</body>
+</html>

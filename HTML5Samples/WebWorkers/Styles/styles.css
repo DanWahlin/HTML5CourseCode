@@ -1,0 +1,22 @@
+﻿body {
+    font-family: Arial;
+}
+
+.ticker {
+    cursor: pointer;
+    width: 75px;
+    background: #efefef;
+    border: 1px solid black;
+    margin: 10px;
+    padding: 2px;
+}
+
+li {
+    list-style-type:none;
+    margin-left: -40px;
+}
+
+#symbol, #value {
+    font-weight:bold;
+    font-size: 16pt;
+}

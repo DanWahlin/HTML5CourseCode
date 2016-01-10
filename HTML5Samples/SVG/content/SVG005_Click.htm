@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>SVG Click</title>
+    <script type="text/javascript">
+        // This function is called when the circle is clicked.
+        function clickMe() {
+            // Display the alert.
+            alert("You clicked the SVG UI element.");
+        }
+    </script>
+  </head>
+  <body>
+    <h1>
+      SVG User Interface
+    </h1>
+    <!-- Create the SVG pane. -->
+    <svg height="200" width="200">
+      <!-- Create the circle. -->
+      <circle cx="100" cy="100" r="50" fill="gold" id="uIElement" onclick="clickMe();"
+      />
+    </svg>
+    <p>
+      Click on the gold circular user interface element.
+    </p>
+  </body>
+</html>
+

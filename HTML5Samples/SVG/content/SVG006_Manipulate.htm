@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>SVG Manipulate</title>
+        <script>
+        var colors = ["orange", "black", "yellow", "red", "blue", "fuchsia"];
+        var curColor = 0;
+        function alternateColor() {
+	        var circle = document.getElementById("myCircle");
+	        curColor = (curColor + 1) % colors.length;
+	        circle.setAttribute("fill", colors[curColor]);
+	        circle.setAttribute("stroke", colors[curColor]);
+        }
+        </script>
+
+    </head>
+    <body>
+	<svg width="500" height="500">
+		<circle cx="250" cy="250" r="100"
+		fill="orange" stroke="black" stroke-width="10" 
+        fill-opacity=".5"
+		id="myCircle"
+		onclick="alternateColor();" />
+	</svg>
+    </body>
+</html>

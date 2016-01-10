@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Audio Demo</title>
+    <style type="text/css">
+        span { cursor: pointer;}
+    </style>
+    <script>
+        var audio;
+        window.onload = function () {
+            audio = document.getElementById('audio');
+        };
+        
+        function play() {
+            audio.play();
+        }
+        
+        function pause() {
+            audio.pause();
+        };
+        
+        function stop() {
+            audio.pause();
+            audio.currentTime = 0;
+        };
+    </script>
+</head>
+<body>
+    <span onclick="play()">Play</span>&nbsp;&nbsp;<span onclick="pause()">Pause</span>&nbsp;&nbsp;<span onclick="stop()">Stop</span>
+    <br />
+    <audio id="audio" autoplay="true" controls="true">
+        <source src="Audio/jeff.wav" />
+        <source src="Audio/jeff.mp3" />
+        <source src="Audio/jeff.ogg" />
+        <source src="Audio/jeff.aac" />
+    </audio>
+</body>
+</html>

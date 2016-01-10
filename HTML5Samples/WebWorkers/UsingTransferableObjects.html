@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Transferable Objects</title>
+    <!-- 
+        Original demo by Eric Bidelman http://html5-demos.appspot.com/static/workers/transferables/index.html 
+         http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#transferable-objects
+    -->
+    <style>
+        .down {
+            margin-top: 17em;
+        }
+        #result {
+            max-height: 500px;
+            overflow: auto;
+        }
+    </style>
+
+    <script src="Scripts/shared.js"></script>
+    <script>
+        var worker = null;
+        var startTime = 0;
+        var supported = false;
+
+        function log(str) {
+            var elem = document.getElementById('result');
+            var log = function (s) {
+                elem.innerHTML += ''.concat(time(), ' ', s, '\n');
+            };
+            log(str);
+        }
+
+        function init() {
+            worker = new Worker('Scripts/transferrableWorker.js');
+
+            worker.onmessage = function (e) {
+                console.timeEnd('actual postMessage round trip was');
+                // capture elapsed time since the original postMessage();
+                if (!e.data.type) {
+                    var elapsed = seconds(startTime);
+                }
+
+                var data = e.data;
+
+                if (data.type && data.type == 'debug') {
+                    log(data.msg);
+                } else {
+                    var rate = Math.round(toMB(data.byteLength) / elapsed);
+                    log(source() + 'postMessage roundtrip took: ' + (elapsed * 1000) + ' ms');
+                    log(source() + 'postMessage roundtrip rate: ' + rate + ' MB/s');
+                }
+            };
+
+            // To feature detect: send a small ArrayBuffer. If transferable objects are
+            // supported, the ArrayBuffer will be neutered (cleared out) after sent.
+            if (USE_TRANSFERRABLE) {
+                var ab = new ArrayBuffer(1);
+                try {
+                    worker.postMessage(ab, [ab]);
+                    if (ab.byteLength) {
+                        alert('Transferables are not supported in your browser!');
+                        log(source() + 'USING STRUCTURED CLONE (copy)');
+                    } else {
+                        log(source() + 'USING TRANSFERABLE OBJECTS');
+                        supported = true;
+                    }
+                } catch (e) {
+                    alert('Transferables are not supported in your browser!');
+                }
+            } else {
+                worker.postMessage(ab); // send anyway to init worker.
+                log(source() + 'USING STRUCTURED CLONE (copy) :(');
+            }
+
+            log(source() + 'READY!');
+        }
+
+        function test() {
+
+            setupArray(); // Need to do this on every run for the repeated runs with transferable arrays. They're cleared out after they're transferred.
+
+            startTime = new Date();
+            console.time('actual postMessage round trip was');
+
+            if (USE_TRANSFERRABLE && supported) {
+                // Note: clears the uInt8View and it's underlying ArrayBuffer, transfering it
+                // out of this view, to the worker.
+                // Passing multiple transferables:
+                //   worker.postMessage({view1: int8View, buffer2: anotherBuffer}, [int8View.buffer, anotherBuffer]);
+                //   window.postMessage(arrayBuffer, targetOrigin, [arrayBuffer]);
+                worker.postMessage(uInt8View.buffer, [uInt8View.buffer]);
+            } else {
+                worker.postMessage(uInt8View.buffer);
+            }
+        }
+
+        window.addEventListener('load', function (e) {
+            init();
+        }, false);
+
+</script>
+</head>
+<body>
+    <section>
+          <p><a href="http://dev.w3.org/html5/spec/common-dom-interfaces.html#transferable-objects" target="_blank">Transferable Objects</a> are lightning fast! The prefixed <code>[window|worker].postMessage()</code>
+          now supports sending an <code>ArrayBuffer</code> as a transferable.</p>
+          <button onclick="test();">Run test</button>
+          <pre id="result"></pre>
+    </section>
+</body>
+</html>

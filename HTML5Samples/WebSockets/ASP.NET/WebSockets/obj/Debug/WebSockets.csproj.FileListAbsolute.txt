@@ -1,0 +1,12 @@
+C:\dropbox\Book\Examples\Chapter 6 ASP.net\WebSockets\WebSockets\bin\WebSockets.dll
+C:\dropbox\Book\Examples\Chapter 6 ASP.net\WebSockets\WebSockets\bin\WebSockets.pdb
+C:\dropbox\Book\Examples\Chapter 6 ASP.net\WebSockets\WebSockets\bin\Microsoft.WebSockets.dll
+C:\dropbox\Book\Examples\Chapter 6 ASP.net\WebSockets\WebSockets\obj\Debug\WebSockets.csprojResolveAssemblyReference.cache
+C:\dropbox\Book\Examples\Chapter 6 ASP.net\WebSockets\WebSockets\obj\Debug\WebSockets.dll
+C:\dropbox\Book\Examples\Chapter 6 ASP.net\WebSockets\WebSockets\obj\Debug\WebSockets.pdb
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\bin\WebSockets.dll
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\bin\WebSockets.pdb
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\bin\Microsoft.WebSockets.dll
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\obj\Debug\WebSockets.csprojResolveAssemblyReference.cache
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\obj\Debug\WebSockets.dll
+C:\Users\wahlind\Dropbox\Chapter 6 ASP.net - Web sockets\WebSockets\obj\Debug\WebSockets.pdb

@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Using the Canvas</title>
+    <script>
+        window.onload = function () {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            
+            //Draw rectangle
+            ctx.fillStyle = 'Green';
+            ctx.fillRect(10, 10, 100, 50);
+
+            //Draw ellipse
+            ctx.arc(60, 125, 50, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'Red';
+            ctx.fill();
+
+        }
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="300"></canvas>
+</body>
+</html>

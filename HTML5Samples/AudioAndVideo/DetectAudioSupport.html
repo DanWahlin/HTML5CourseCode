@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Detecting Audio Support in Browsers</title>
+    <script>
+        window.onload = function () {
+            var outputDiv = document.getElementById('outputDiv');
+            var audio = document.createElement('audio');
+            var msg = '';
+
+            if (audio.canPlayType) {
+                var mpeg = audio.canPlayType('audio/mpeg');
+                msg += 'MP3: ' + mpeg + '<br />';
+
+                var ogg = audio.canPlayType('audio/ogg;codecs="vorbis"');
+                msg += 'Ogg: ' + ogg + '<br />';
+
+                var aac = audio.canPlayType('audio/mp4;codecs="mp4a.40.5"');
+                msg += 'AAC: ' + aac + '<br />';
+
+                var wav = audio.canPlayType('audio/wav');
+                msg += 'WAV: ' + wav + '<br />';
+
+                outputDiv.innerHTML += msg;
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="outputDiv"></div>
+</body>
+</html>

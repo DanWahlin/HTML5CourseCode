@@ -1,0 +1,162 @@
+@charset 'utf-8';
+
+/**** display table, table-cell ****/
+#content {
+    display                 : table;
+}
+#blogs, #sidebar {
+    display                 : table-cell;
+}
+
+/**** fonts, web.config ****/
+@font-face {
+    font-family             : 'TitleFont';
+    src                     : url('../fonts/rocksalt-webfont.woff') format('woff');
+    font-weight             : bold;
+    font-style              : normal;
+}
+@font-face {
+    font-family             : 'HeadingFont';
+    src                     : url('../fonts/michroma-webfont.woff') format('woff');
+    font-weight             : bold;
+    font-style              : normal;
+}
+h1 {
+    font-family             : 'TitleFont'; 
+}
+h2 {
+    font-family             : 'HeadingFont';
+}
+
+/**** rounded corners ****/
+#intro, #intro img {
+    border-radius           : 25px;
+    -webkit-border-radius   : 25px;
+    -moz-border-radius      : 25px;
+    -o-border-radius        : 25px;
+    
+}
+#sidebar section {
+    border-radius           : 15px;
+    -webkit-border-radius   : 15px;          
+    -moz-border-radius      : 15px;
+    -o-border-radius        : 15px;    
+}
+#intro figcaption {
+    border-radius           : 0 0 25px 25px;
+    -webkit-border-radius   : 0 0 25px 25px;    
+    -moz-border-radius      : 0 0 25px 25px;
+    -o-border-radius        : 0 0 25px 25px;    
+   
+    background-color        : rgba(0,0,200,0.5);
+}
+
+/**** box shadow ****/
+#figureAd {
+    box-shadow              : 11px 11px 11px #777;
+    -webkit-box-shadow      : 11px 11px 11px #777;  
+    -moz-box-shadow         : 11px 11px 11px #777;
+    -o-box-shadow           : 11px 11px 11px #777;    
+}
+#navMenu 
+{
+    box-shadow: 0 0 8px 2px black;
+}
+#navMenu:hover 
+{
+    box-shadow: 0 0 8px 2px black, 
+                4px -4px 40px lime, 
+                4px 4px 40px red, 
+                0px 8px 40px yellow, 
+                0px -8px 40px blue;
+}
+#optionsMenu:hover 
+{
+    box-shadow              : 0px 0px 51px #aadd44;
+    -webkit-box-shadow      : 0px 0px 51px #aadd44;  
+    -moz-box-shadow         : 0px 0px 51px #aadd44;
+    -o-box-shadow           : 0px 0px 51px #aadd44;  
+}
+
+
+
+
+/**** transform rotate ****/
+.upsideDown {
+    transform               : rotate(180deg);
+    -ms-transform           : rotate(180deg);    
+    -webkit-transform       : rotate(180deg);
+    -moz-transform          : rotate(180deg);
+    -o-transform            : rotate(180deg);    
+}
+
+#figureAd:hover {
+    transform               : scale(2) rotate(-10deg);
+    -ms-transform           : scale(2) rotate(-10deg);
+    -webkit-transform       : scale(2) rotate(-10deg);
+    -moz-transform          : scale(2) rotate(-10deg);
+    -o-transform            : scale(2) rotate(-10deg);    
+}
+
+
+
+/**** media queries ****/
+@media screen and (max-device-width: 480px) {
+    .hand {
+        width: 80px;
+        height: 80px;
+        background-image: url('../images/hand.ico');
+        border-radius           : 0px;
+        -webkit-border-radius   : 0px;
+        -moz-border-radius      : 0px;
+        -o-border-radius        : 0px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .hand {
+        width: 80px;
+        height: 80px;
+        background-image: url('../images/hand.ico');
+        border-radius           : 0px;
+        -webkit-border-radius   : 0px;
+        -moz-border-radius      : 0px;
+        -o-border-radius        : 0px;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 580px) {
+    .hand {
+        background-image: url('../images/1.jpg');
+        height: 350px;
+        width: 481px;        
+    }
+}
+        
+@media screen and (min-width: 581px) and (max-width: 690px) {
+    .hand {
+        background-image: url('../images/2.jpg');
+        height: 400px;
+        width: 581px;        
+    }
+}
+        
+@media screen and (min-width: 681px) and (max-width: 780px) {
+    .hand {
+        background-image: url('../images/3.jpg');
+        height: 450px; 
+        width: 681px;       
+    }
+}
+        
+@media screen and (min-width: 781px) and (max-width: 939px) {
+    .hand {
+        background-image: url('../images/4.jpg');
+        height: 500px;
+        width: 781px;
+    }
+}
+
+rect:hover 
+{
+    fill : white;
+    fill-opacity : 0.1;
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mandlebrot Fractal</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/simplex.bootstrap.css" />
+        <link rel="stylesheet" href="css/style.css" />
+
+        <script src="js/modernizr.custom.js"></script>
+    </head>
+    <body>
+        <div class="container alt">
+            <h1>Sorry it looks like your browser doesn't support some of the features needed to run this visualization. <a href="http://browsehappy.com/">Click here to upgrade your browser.</a></h1>
+        </div>
+
+        <div class="container main">
+            <a href="https://github.com/adambom/mandelbrot"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub"></a>
+            <h1>Generate Mandelbrot Fractals</h1>
+
+            <p class="lead">Zoom in on the graphic below to see more detail. Requires web workers, canvas, and a fast machine.</p>
+
+            <div class="row">
+                <div class="span7">
+                    <h2>Output <small>drag to select a region in the image</small></h2>
+
+                    <canvas id="c"></canvas>
+                    <p>
+                        Rendered in <span id="elapsed"></span>s. 
+                        <a href="javascript: void(0);" id="export">Export as png</a>
+                    </p>
+
+                    <!-- AddThis Button BEGIN -->
+                    <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+                    <a class="addthis_button_preferred_1"></a>
+                    <a class="addthis_button_preferred_2"></a>
+                    <a class="addthis_button_preferred_3"></a>
+                    <a class="addthis_button_preferred_4"></a>
+                    <a class="addthis_button_compact"></a>
+                    <a class="addthis_counter addthis_bubble_style"></a>
+                    </div>
+                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-510dee21711154b8"></script>
+                    <!-- AddThis Button END -->
+                </div>
+
+                <div class="span5">
+                    <h2>Settings</h2>
+
+                    <div class="well">
+                        <h3>Zoom level:</h3> 
+                        <p><span id="zoom-level">1 x 1</span> <a href="javascript: void(0);" id="zoom-out">zoom out</a></p>
+                        <p><small>Viewing region: <span id="region">(-2.5, 1i) - (-1, 1i)</span></small></p>
+
+                        <h3>Maximum iterations</h3>
+                        <input type="text" id="maximum-iterations" value="1000" />
+
+                        <h3>Coloration</h3>
+                        <label>Start Color</label> <input class="color" id="start-color" type="text" value="red" />
+                        <label>Mid Color</label> <input class="color" id="mid-color" type="text" value="yellow" />
+                        <label>End Color</label> <input class="color" id="end-color" type="text" value="fuchsia" />
+                        <label>Bulb Color</label> <input class="color" id="bulb-color" type="text" value="black" />
+
+                        <h3>Workers</h3>
+                        <select id="workers">
+                            <option value="1">1</option>
+                            <option value="4">4</option>
+                            <option value="16" selected>16</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <h2>About this Visualization</h2>
+
+                    <h3>Mandelbrot Set</h3>
+                    <p>The Mandelbrot set represents the set of all points on the complex plane where the magnitude the expression:</p>
+
+                    <p>`z_(n+1) = z_n^2 + c`</p>
+
+                    <p>Remains bounded for all values of n. This can be determined by iterating until the magnitude surpasses 2 or we reach a specified maximum number of iterations.</p>
+
+                    <p>For example, take the real number, 1 + 0i. In the equation above, we set `c` equal to 1. `z_n` has an initial value of 0. Hence, iterating on this formula produces the following series:</p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Iteration</th>
+                                <th>`z`</th>
+                                <th>`|z|`</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>2</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>26</td>
+                                <td>26</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>We can see this is unbounded, so the number 1 is not part of the mandelbrot set. On the other hand, if we looked at the case where `c = 0 + 1i`, we get a bounded series.</p>
+
+                    <p>Recall that the magnitude of a complex number, `c` can be computed using the formula:</p>
+
+                    <p>`|c| = sqrt(Re(c)^2 + Im(c)^2)`</p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Iteration</th>
+                                <th>`z`</th>
+                                <th>`|z|`</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>i</td>
+                                <td>1</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>-1 + i</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>-i</td>
+                                <td>-1</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>-1 + i</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p>If we continue to iterate on this value of `c` then we will continue to oscillate betwen -1 and 1 until we reach our maximum number of iterations. 0 + i is a member of the mandlebrot set.</p>
+
+                    <p>In order to visualize this set, we perform this iterative solution for every pixel on our display, where each pixel corresponds to a point on the complex plane. We map real numbers to the x axis and imaginary numbers to the y axis. Points that remain bounded are colored black (try changing the bulb color). Points that are unbounded are colored according to the number of iterations until we discover that they are not bounded.</p>
+
+                    <p>The result is a stunning fractal that can be zoomed infinitely (or until we run out of sufficient precision necessary to represent such small numbers).</p>
+
+                    <h3>How it's done</h3>
+
+                    <p>Everything you see is computed using javascript running in the browser. The visualization uses web workers to farm out the computations. We divide the plane into rectangular regions and assign the points contained in each region to a worker thread. This allows us to perform the computation in parallel, and prevents the main thread from blocking the UI while it's running.</p>
+
+                    <p>When each worker returns its results, that portion of the plane is drawn to a 500x500px canvas. <a href="https://github.com/mbostock/d3/wiki/Quantitative-Scales">D3's excellent scale functions</a> (using a log scale) are used to map pixels to points on the complex plane and number of iterations to color.</p>
+                </div>
+            </div>
+
+            <hr>
+
+            <footer id="footer">
+                <p class="pull-right"><a href="#">Back to top</a></p>
+                <div class="links">
+
+                Made by Adam Savitzky. Contact him <a href="mailto:asavitzky@forio.com">asavitzky@forio.com</a>.<br>
+            Code licensed under the <a target="_blank" href="http://www.apache.org/licenses/LICENSE-2.0">Apache License v2.0</a>.<br>
+                Based on <a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap</a>. Hosted on <a target="_blank" href="http://pages.github.com/">GitHub</a>. Icons from <a target="_blank" href="http://glyphicons.com/">Glyphicons</a>. Web fonts from <a target="_blank" href="http://www.google.com/webfonts">Google</a>.<p></p>
+            </footer>
+        </div>
+        
+
+        <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/underscore.js"></script>
+        <script src="js/d3.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html >
+
+<html>
+<head>
+    <title>Using Local Storage with Expando Properties</title>
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            loadSettings();
+            $('#SubmitButton').click(function () {
+                if (hasLocalStorage) storeSettings();
+                else alert('No local storage support');
+            });
+            $('#ClearButton').click(function () {
+                localStorage.clear();
+                loadSettings();
+            });
+        });
+        
+        function loadSettings() {
+            var name = localStorage.name;
+            var state = localStorage.state;
+            $('#NameTextBox').val(name);
+            $('#StatesSelect').val(state);
+        }
+        
+        function storeSettings() {
+            try {
+                localStorage.name = $('#NameTextBox').val();
+                localStorage.state = $('#StatesSelect').val();
+                $('#OutputSpan').html('Settings Saved!');
+            } catch(e) {
+                if (e == QUOTA_EXCEEDED_ERR) {
+                    alert('Storage quota exceeded');
+                }
+            } 
+        }
+        
+        function hasLocalStorage() {
+            return ('localStorage' in window && window['localStorage'] != null);
+        }
+    </script>
+</head>
+<body>
+    <h2>Settings</h2>
+    <br />
+    Name: <input type="textbox" id="NameTextBox"/>
+    <br />
+    State: 
+    <select id="StatesSelect">
+        <option>Arizona</option>
+        <option>California</option>
+        <option>Utah</option>
+    </select>
+    <br />
+    <button id="SubmitButton">Store Settings</button>&nbsp;&nbsp;
+    <button id="ClearButton">Clear Settings</button>
+    <br />
+    <span id="OutputSpan"></span>
+</body>
+</html>

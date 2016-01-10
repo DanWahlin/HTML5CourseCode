@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Geolocation Demo</title>
+    <script>
+        function geolocate() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getCurrentPositionCallback);
+            }
+            else {
+                alert('Your browser doesn\'t support geolocation');
+            }
+        }
+
+        function getCurrentPositionCallback(position) {
+            document.getElementById('long').innerHTML = position.coords.longitude;
+            document.getElementById('lat').innerHTML = position.coords.latitude;
+        }
+    </script>
+
+</head>
+<body>
+    Longitude: <span id="long"></span>
+    <br />
+    Latitude: <span id="lat"></span>
+    <br /><br />
+    <input type="button" value="Get Geolocation" onclick="geolocate()"/>
+</body>
+</html>
+

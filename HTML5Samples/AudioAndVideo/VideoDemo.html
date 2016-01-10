@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Video Demo</title>
+    <style type="text/css">
+        span { cursor: pointer;}
+    </style>
+    <script>
+        var video;
+        window.onload = function () {
+            video = document.getElementById('video');
+        };
+
+        function play() {
+            video.play();
+        }
+
+        function pause() {
+            video.pause();
+        };
+
+        function stop() {
+            video.pause();
+            video.currentTime = 0;
+        };
+    </script>
+</head>
+<body>
+    <span onclick="play()">Play</span>&nbsp;&nbsp;<span onclick="pause()">Pause</span>&nbsp;&nbsp;<span onclick="stop()">Stop</span>
+    <br />
+
+    <video id="video" height="323" width="600" poster="Images/RealSteelPoster.jpg" controls>
+        <source src="Video/RealSteel.mp4"  />
+        <source src="Video/RealSteel.webm" />
+        <source src="Video/RealSteel.ogv" />
+    </video>
+</body>
+</html>

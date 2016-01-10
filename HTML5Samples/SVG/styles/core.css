@@ -1,0 +1,251 @@
+@charset 'utf-8';
+
+/**** element ****/
+body {
+    margin: auto;
+    padding: 22px 0;
+    width: 940px;
+    font-family: Arial, sans-serif;
+    background: #F0F0F0; 
+}
+body>footer, body>nav
+{
+    background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#888888));
+	background: -moz-linear-gradient(top,  #000000,  #888888);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#888888')";
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#888888');
+	
+}
+h1, h2 {
+    padding: 22px 0;
+    font-weight: bolder;
+}
+h1 {
+    font-size: 58px;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 26px;
+    padding: 11px 0;
+}
+p {
+    padding-bottom: 22px;
+}
+nav {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+figcaption {
+    text-align: center;
+}
+footer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 20%; 
+    padding-top: 25px;
+    text-align: center; 
+    background: #222;
+    font-size: 16px;
+    font-weight: lighter;
+    color: #aaa;
+}
+
+/**** id ****/
+#navMenu {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    height: 35px;
+    font-size: 26px;
+    line-height: 35px;
+    color: #888888;
+    cursor: pointer;
+}
+#navMenu li {
+    list-style-type: none;
+}
+#navMenu:hover li:before
+{
+    content: ":";
+}
+#navItemsList {
+    margin: 0 auto;
+    width: 940px;
+    list-style: none;
+}
+#navItemsList li {
+    float: left;
+}
+#navItemsList li a {
+    display: block;
+    margin-right: 20px;
+    width: 140px;
+    font-size: 26px;
+    line-height: 44px;
+    text-align: center;
+    text-decoration: none;
+    color: #aaa;
+}
+#navItemsList li a:hover {
+    color: #fff;
+}
+#navItemsList li.selected a {
+    color: #fff;
+}
+#intro {
+    position: relative;
+    background: #467612 url("../images/intro_background.png") repeat-x;
+    margin-top: 66px;
+    height: 175px;
+    cursor: pointer;
+}
+#intro img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 653px;
+    height: 175px;
+}
+#intro figcaption {
+    position: absolute;
+    top: 140px;
+    left: 287px;
+    width: 653px;
+    height: 25px;
+    color: #d9f499;
+    font-weight: bold;
+    padding-top: 10px;
+    text-transform: uppercase;
+}
+#intro h2, #intro p {
+    position: relative;
+    z-index: 1;
+    width: 336px;
+    margin-left: 35px;
+}
+#intro h2 {
+    padding-top: 45px;
+    color: #fff;
+}
+#intro p {
+    color: #d9f499;
+    width: 180px;
+    padding: 0;
+}
+
+#blogs {
+    width: 620px;
+    padding-right: 22px;
+}
+
+#figureAd 
+{
+    z-index: 1;
+    margin-right: 30px;
+    float: left;
+    border: 1px solid #777;
+    width: 160px;
+    padding: 15px 15px 25px 15px;
+}
+#figureAd img {
+    width: 161px;
+    height: 113px;
+}
+#figureAd:hover {
+    font-weight:bolder;
+    background-color: #F0F0F0;
+    cursor: pointer;    
+}
+
+#sidebar {
+    width: 300px;
+    background: url("../images/sidebar_background.png") top left;
+}
+#sidebar section {
+    margin: 22px 0 0 22px;
+    padding: 11px 22px;
+    background: url("../images/sidebar_section_background.png") top left;  
+    background-repeat: repeat-x;  
+}
+#sidebar section ul {
+    margin: 0 0 0 22px;
+    list-style: none;
+}
+
+#sidebar section ul li a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+}
+#sidebar section ul li a:hover {
+    text-decoration: underline;
+}
+
+#optionsMenu  {
+    z-index: 3;
+    position: absolute;
+    top : -50px;
+    left: -89px;
+    width: 88px;
+    height: 178px;
+    background: url(../images/windows7phone.gif) left top no-repeat;
+    color: White;
+    cursor : pointer;
+}
+#optionsMenuText 
+{
+    z-index: 4;
+    position: absolute;
+    top : 5px;
+    left : 7px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #aadd44;
+    list-style-type: none;
+}
+
+
+/**** class ****/
+.blogPost header p, .blogPost header p a {
+    margin-top: -10px;
+    font-size: 20px;
+    font-style: italic;
+    color: #467612;
+}
+.blogPost header p a:hover {
+    text-decoration: none;
+    color: #000;
+}
+.blogPost div {
+    color: #444444;
+    font-weight:lighter;
+}
+.blogPost ul {
+    padding-bottom: 25px;
+}
+.topics li:before 
+{
+    content: " - ";
+}
+.fullName 
+{
+    font-weight: bold;
+}
+.hand  
+{
+    background: #F0F0F0;
+    background-repeat: no-repeat;
+    background-image: url('../images/5.jpg');
+    background-size : 100%;
+    width: 939px;
+    height: 550px;
+    border-radius           : 25px;
+    -webkit-border-radius   : 25px;
+    -moz-border-radius      : 25px;
+    -o-border-radius        : 25px;
+}

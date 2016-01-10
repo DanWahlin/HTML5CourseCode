@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html >
+<html>
+    <head>
+        <title>SVG Styles</title>
+        <style type="text/css" media="screen">
+            rect.greenrect {fill:green;}
+            rect:hover {fill:yellow;} 
+        </style>
+    </head>
+    <body>
+        <svg height="75px" width="75px">	
+            <!--No fill (defaults the color to #000000)-->
+            <rect id="myRect1" height="100%" width="100%" >
+        </svg>
+        <svg height="75px" width="75px">	
+            <!--using the class="greenrect"-->
+            <rect id="myRect2" height="100%" width="100%" class="greenrect"/>
+        </svg>
+        <svg height="75px" width="75px">
+            <!--using the style="fill:pink"-->	
+            <rect id="myRect3" height="100%" width="100%" style="fill:pink"/> 
+        </svg>
+        <svg height="75px" width="75px">
+            <!--using the attribute fill="red"-->	
+            <rect id="myRect4" height="100%" width="100%" fill="red"/>
+        </svg>
+    </body>
+</html>

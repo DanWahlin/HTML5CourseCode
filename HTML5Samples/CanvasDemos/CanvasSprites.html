@@ -1,0 +1,145 @@
+﻿<!-- See http://codeutopia.net/blog/2009/08/21/using-canvas-to-do-bitmap-sprite-animation-in-javascript/ -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas Sprite Animations</title>
+    <script type="text/javascript">
+        var FrameTimer = function() {
+            var _lastTick = (new Date()).getTime(),
+                _frameSpacing = 0;
+
+            var getSeconds = function() {
+                var seconds = _frameSpacing / 1000;
+                if (isNaN(seconds)) {
+                    return 0;
+                }
+                return seconds;
+            };
+
+            var tick = function() {
+                var currentTick = (new Date()).getTime();
+                _frameSpacing = currentTick - _lastTick;
+                _lastTick = currentTick;
+            };
+
+            return {
+                getSeconds: getSeconds,
+                tick: tick
+            };
+        };
+
+        var SpriteSheet = function (data) {
+            var _sprites = data.sprites,
+                _width = data.width,
+                _height = data.height,
+                _xPadding = data.xPadding,
+                _yPadding = data.yPadding;
+
+            var getOffset = function (spriteName) {
+                var len = _sprites.length;
+                for (var i = 0; i < len; i++) {
+                    var sprite = _sprites[i];
+                    if (sprite.name == spriteName) {
+                        return {
+                            x: (sprite.x * _width) + (_xPadding || 0),
+                            y: (sprite.y * _height) + (_yPadding || 0),
+                            width: _width,
+                            height: _height
+                        };
+                    }
+                }
+                return null;
+            };
+
+            var sprites = function () {
+                return _sprites;
+            };
+
+            return {
+                getOffset: getOffset,
+                sprites: sprites
+            };
+
+        };
+
+        var Animation = function (data, sprites) {
+            var _sprites = sprites,
+                _frames = data,
+                _frameIndex = 0,
+                _frameDuration = data[0].time;
+
+            var animate = function (deltaTime) {
+                //Reduce time passed from the duration to show a frame        
+                _frameDuration -= deltaTime;
+
+                //When the display duration has passed
+                if (_frameDuration <= 0) {
+                    //Change to next frame, or the first if ran out of frames
+                    _frameIndex++;
+                    if (_frameIndex == _frames.length) {
+                        _frameIndex = 0;
+                    }
+
+                    //Change duration to duration of new frame
+                    _frameDuration = _frames[_frameIndex].time;
+                }
+            };
+
+            var getSprite = function () {
+                //Return the sprite for the current frame
+                return _sprites.getOffset(_frames[_frameIndex].sprite);
+            };
+
+            return {
+                animate: animate,
+                getSprite: getSprite
+            };
+        };
+
+        var _width = 26,
+            _height = 26,
+            _yPadding = 52,
+            _xPadding = 45;
+
+        window.onload = function () {
+            var timer = new FrameTimer();
+            timer.tick();
+
+            var sprites = new SpriteSheet({
+                width: _width,
+                height: _height,
+                yPadding: _yPadding,
+                xPadding: _xPadding,
+                sprites: [
+                    { name: 'walk1', x: 10, y: 0 },
+                    { name: 'walk2', x: 8, y: 0 },
+                ]
+            });
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            var animation = new Animation(
+            [
+                    { sprite: 'walk1', time: 0.2 },
+                    { sprite: 'walk2', time: 0.2 },
+            ], sprites);
+
+            var img = new Image();
+
+            img.onload = function () {
+                setInterval(function () {
+                    animation.animate(timer.getSeconds());
+                    var frame = animation.getSprite();
+                    ctx.clearRect(0, 0, 300, 300);
+                    ctx.drawImage(img, frame.x, frame.y, _width, _height, 0, 0, _width, _height);
+                    timer.tick();
+                }, 5);
+            };
+
+            img.src = 'Images/super-mario-bros-3.png';
+        };
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+</body>
+</html>
